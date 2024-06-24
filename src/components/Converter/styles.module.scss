@@ -1,0 +1,26 @@
+@import '@/app/variables.scss';
+
+.wrapper{
+    margin-top: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    input{
+    max-width: 200px;
+}
+}
+.sectionUsd,
+.sectionEur{
+    display: flex;
+    flex-flow: column;
+    gap: 7px;
+    margin-left: 10px;
+}
+
+
+@media (max-width: 550px){
+    .wrapper{
+      flex-flow: column;
+      align-items: center;
+    }
+  }  
