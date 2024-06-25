@@ -4,26 +4,28 @@ import styles from "./styles.module.scss";
 
 import { AppDispatch, RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUsd, updateEur, selectAllFoods } from "@/redux/foodsSlice";
+import { updateUsd, updateEur, selectAllCurrency } from "@/redux/currencySlice";
 
-type foodsState = {
+type currencyState = {
   USD: number;
   EUR: number;
 };
 
 export default function Converter() {
   const dispatch = useDispatch<AppDispatch>();
-  const foods = useSelector<RootState, foodsState>(selectAllFoods);
+  const currency = useSelector<RootState, currencyState>(selectAllCurrency);
   const exchangeRate = 1.07;
 
-  const handleUsdChange = (usdValue: any) => {
-    dispatch(updateUsd(parseFloat(usdValue)));
-    dispatch(updateEur(parseFloat((usdValue * exchangeRate).toFixed(2))));
+  const handleUsdChange = (usdValue: string) => {
+    const usdNumber: number = parseFloat(usdValue);
+    dispatch(updateUsd(usdNumber));
+    dispatch(updateEur(parseFloat((usdNumber * exchangeRate).toFixed(2))));
   };
 
-  const handleEurChange = (eurValue: any) => {
-    dispatch(updateEur(parseFloat(eurValue)));
-    dispatch(updateUsd(parseFloat((eurValue / exchangeRate).toFixed(2))));
+  const handleEurChange = (eurValue: string) => {
+    const eurNumber: number = parseFloat(eurValue);
+    dispatch(updateEur(eurNumber));
+    dispatch(updateUsd(parseFloat((eurNumber / exchangeRate).toFixed(2))));
   };
 
   return (
@@ -33,7 +35,7 @@ export default function Converter() {
         <input
           type="number"
           id="usdInput"
-          value={foods.USD}
+          value={currency.USD}
           onChange={(e) => handleUsdChange(e.target.value)}
         />
       </section>
@@ -42,7 +44,7 @@ export default function Converter() {
         <input
           type="number"
           id="eurInput"
-          value={foods.EUR}
+          value={currency.EUR}
           onChange={(e) => handleEurChange(e.target.value)}
         />
       </section>

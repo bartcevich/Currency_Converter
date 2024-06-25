@@ -244,11 +244,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ 5451:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 6356))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 8914))
 
 /***/ }),
 
-/***/ 6356:
+/***/ 8914:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -271,14 +271,14 @@ var styles_module_default = /*#__PURE__*/__webpack_require__.n(styles_module);
 var react_redux = __webpack_require__(1368);
 // EXTERNAL MODULE: ./node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs + 4 modules
 var redux_toolkit_modern = __webpack_require__(2049);
-;// CONCATENATED MODULE: ./src/redux/foodsSlice.ts
+;// CONCATENATED MODULE: ./src/redux/currencySlice.ts
 
 const initialState = {
     USD: 0,
     EUR: 0
 };
-const foodsSlice = (0,redux_toolkit_modern/* createSlice */.oM)({
-    name: "food",
+const currencySlice = (0,redux_toolkit_modern/* createSlice */.oM)({
+    name: "currency",
     initialState,
     reducers: {
         updateUsd: (state, action)=>{
@@ -289,9 +289,9 @@ const foodsSlice = (0,redux_toolkit_modern/* createSlice */.oM)({
         }
     }
 });
-const selectAllFoods = (state)=>state.foods;
-const { updateUsd, updateEur } = foodsSlice.actions;
-/* harmony default export */ const redux_foodsSlice = (foodsSlice.reducer);
+const selectAllCurrency = (state)=>state.currencys;
+const { updateUsd, updateEur } = currencySlice.actions;
+/* harmony default export */ const redux_currencySlice = (currencySlice.reducer);
 
 ;// CONCATENATED MODULE: ./src/components/Converter/index.tsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
@@ -301,15 +301,17 @@ const { updateUsd, updateEur } = foodsSlice.actions;
 
 function Converter() {
     const dispatch = (0,react_redux/* useDispatch */.I0)();
-    const foods = (0,react_redux/* useSelector */.v9)(selectAllFoods);
+    const currency = (0,react_redux/* useSelector */.v9)(selectAllCurrency);
     const exchangeRate = 1.07;
     const handleUsdChange = (usdValue)=>{
-        dispatch(updateUsd(parseFloat(usdValue)));
-        dispatch(updateEur(parseFloat((usdValue * exchangeRate).toFixed(2))));
+        const usdNumber = parseFloat(usdValue);
+        dispatch(updateUsd(usdNumber));
+        dispatch(updateEur(parseFloat((usdNumber * exchangeRate).toFixed(2))));
     };
     const handleEurChange = (eurValue)=>{
-        dispatch(updateEur(parseFloat(eurValue)));
-        dispatch(updateUsd(parseFloat((eurValue / exchangeRate).toFixed(2))));
+        const eurNumber = parseFloat(eurValue);
+        dispatch(updateEur(eurNumber));
+        dispatch(updateUsd(parseFloat((eurNumber / exchangeRate).toFixed(2))));
     };
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
         className: (styles_module_default()).wrapper,
@@ -324,7 +326,7 @@ function Converter() {
                     /*#__PURE__*/ jsx_runtime_.jsx("input", {
                         type: "number",
                         id: "usdInput",
-                        value: foods.USD,
+                        value: currency.USD,
                         onChange: (e)=>handleUsdChange(e.target.value)
                     })
                 ]
@@ -339,7 +341,7 @@ function Converter() {
                     /*#__PURE__*/ jsx_runtime_.jsx("input", {
                         type: "number",
                         id: "eurInput",
-                        value: foods.EUR,
+                        value: currency.EUR,
                         onChange: (e)=>handleEurChange(e.target.value)
                     })
                 ]
@@ -353,7 +355,7 @@ function Converter() {
 
 const store = (0,redux_toolkit_modern/* configureStore */.xC)({
     reducer: {
-        foods: redux_foodsSlice
+        currencys: redux_currencySlice
     }
 });
 
@@ -423,7 +425,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,951,195,117], () => (__webpack_exec__(9712)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,951,195,949], () => (__webpack_exec__(9712)));
 module.exports = __webpack_exports__;
 
 })();
