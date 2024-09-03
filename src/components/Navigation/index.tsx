@@ -33,18 +33,9 @@ export default function Navigation() {
               <Nav.Link href="/" className={styles.menu_nav1}>
                 Главная
               </Nav.Link>
-              <NavDropdown
-                id="dropdown-basic-button"
-                title="Написать обращение"
-                className={styles.menu_nav}
-              >
-                <Dropdown.Item className={styles.menu_nav2}>
-                  <Link href="/history">Министерство здравоохранения</Link>
-                </Dropdown.Item>
-                <Dropdown.Item className={styles.menu_nav2}>
-                  <Link href="/Test">Министерство образования</Link>
-                </Dropdown.Item>
-              </NavDropdown>
+              <Nav.Link href="/convert" className={styles.menu_nav}>
+                Конвертация
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

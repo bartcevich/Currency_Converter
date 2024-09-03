@@ -6962,7 +6962,7 @@ const _default = chalk; //# sourceMappingURL=chalk.js.map
 
 /***/ }),
 
-/***/ 9141:
+/***/ 2315:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -7162,7 +7162,7 @@ Object.defineProperty(exports, "DraftModeProvider", ({
         return DraftModeProvider;
     }
 }));
-const _apiutils = __webpack_require__(9141);
+const _apiutils = __webpack_require__(2315);
 class DraftModeProvider {
     constructor(previewProps, req, cookies, mutableCookies){
         var _cookies_get;
@@ -7520,7 +7520,7 @@ function getPathnameFromAbsolutePath(absolutePath) {
 
 /***/ }),
 
-/***/ 1320:
+/***/ 9165:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -7715,7 +7715,7 @@ const _patchfetch = __webpack_require__(6133);
 const _tracer = __webpack_require__(9814);
 const _constants = __webpack_require__(3993);
 const _getpathnamefromabsolutepath = __webpack_require__(2509);
-const _proxyrequest = __webpack_require__(1320);
+const _proxyrequest = __webpack_require__(9165);
 const _resolvehandlererror = __webpack_require__(7714);
 const _log = /*#__PURE__*/ _interop_require_wildcard(__webpack_require__(3724));
 const _autoimplementmethods = __webpack_require__(7053);

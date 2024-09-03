@@ -216,7 +216,7 @@ __webpack_require__.r(__webpack_exports__);
         }]
       },
         {
-          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 7801)), "D:\\andrei\\work\\change_dollars_or_euros\\Currency_Converter\\src\\app\\layout.tsx"],
+          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 4599)), "D:\\andrei\\work\\change_dollars_or_euros\\Currency_Converter\\src\\app\\layout.tsx"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2819))).default(props))],
     apple: [],
@@ -244,11 +244,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ 5451:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 8914))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 7566))
 
 /***/ }),
 
-/***/ 8914:
+/***/ 7566:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -269,106 +269,123 @@ var styles_module = __webpack_require__(4145);
 var styles_module_default = /*#__PURE__*/__webpack_require__.n(styles_module);
 // EXTERNAL MODULE: ./node_modules/react-redux/dist/react-redux.mjs
 var react_redux = __webpack_require__(1368);
-// EXTERNAL MODULE: ./node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs + 4 modules
-var redux_toolkit_modern = __webpack_require__(2049);
-;// CONCATENATED MODULE: ./src/redux/currencySlice.ts
-
-const initialState = {
-    USD: 0,
-    EUR: 0
-};
-const currencySlice = (0,redux_toolkit_modern/* createSlice */.oM)({
-    name: "currency",
-    initialState,
-    reducers: {
-        updateUsd: (state, action)=>{
-            state.USD = action.payload;
-        },
-        updateEur: (state, action)=>{
-            state.EUR = action.payload;
-        }
-    }
-});
-const selectAllCurrency = (state)=>state.currencys;
-const { updateUsd, updateEur } = currencySlice.actions;
-/* harmony default export */ const redux_currencySlice = (currencySlice.reducer);
-
+// EXTERNAL MODULE: ./src/redux/currencySlice.ts
+var currencySlice = __webpack_require__(7219);
 ;// CONCATENATED MODULE: ./src/components/Converter/index.tsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
 
 
 
 
+const RIGHT_ANSWER = [
+    {
+        value: "выберите валюту",
+        label: "выберите валюту"
+    },
+    {
+        value: "RUB",
+        label: "RUB"
+    },
+    {
+        value: "USD",
+        label: "USD"
+    },
+    {
+        value: "EUR",
+        label: "EUR"
+    }
+];
 function Converter() {
     const dispatch = (0,react_redux/* useDispatch */.I0)();
-    const currency = (0,react_redux/* useSelector */.v9)(selectAllCurrency);
-    const exchangeRate = 1.07;
-    const handleUsdChange = (usdValue)=>{
-        const usdNumber = parseFloat(usdValue);
-        dispatch(updateUsd(usdNumber));
-        dispatch(updateEur(parseFloat((usdNumber * exchangeRate).toFixed(2))));
+    const currency = (0,react_redux/* useSelector */.v9)(currencySlice/* selectAllCurrency */.T4);
+    const [purchasePrice1, setPurchasePrice1] = (0,react_.useState)(0);
+    const [purchasePrice2, setPurchasePrice2] = (0,react_.useState)(0);
+    const [namePurchasePrice1, setNamePurchasePrice1] = (0,react_.useState)("");
+    const [namePurchasePrice2, setNamePurchasePrice2] = (0,react_.useState)("");
+    const [answer, setAnswer] = (0,react_.useState)("");
+    const handleAnswerChange = (e)=>{
+        const enteredAnswer = e.target.value;
+        if (enteredAnswer === "RUB") {
+            console.log(enteredAnswer);
+            setNamePurchasePrice1("USD");
+            setPurchasePrice1(Number(currency.salePriceUSD.toFixed(3)));
+            setNamePurchasePrice2("EUR");
+            setPurchasePrice2(Number(currency.salePriceEUR.toFixed(3)));
+        } else if (enteredAnswer === "USD") {
+            setNamePurchasePrice1("RUB");
+            setPurchasePrice1(Number((1 / currency.salePriceUSD).toFixed(3)));
+            setNamePurchasePrice2("EUR");
+            setPurchasePrice2(Number((currency.purchasePriceEUR / currency.salePriceUSD).toFixed(3)));
+        } else if (enteredAnswer === "EUR") {
+            setNamePurchasePrice1("RUB");
+            setPurchasePrice1(Number((1 / currency.salePriceEUR).toFixed(3)));
+            setNamePurchasePrice2("USD");
+            setPurchasePrice2(Number((currency.purchasePriceUSD / currency.salePriceEUR).toFixed(3)));
+        }
+        setAnswer(enteredAnswer);
     };
-    const handleEurChange = (eurValue)=>{
-        const eurNumber = parseFloat(eurValue);
-        dispatch(updateEur(eurNumber));
-        dispatch(updateUsd(parseFloat((eurNumber / exchangeRate).toFixed(2))));
-    };
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         className: (styles_module_default()).wrapper,
-        children: [
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-                className: (styles_module_default()).sectionUsd,
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                        htmlFor: "usdInput",
-                        children: "USD"
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("input", {
-                        type: "number",
-                        id: "usdInput",
-                        value: currency.USD,
-                        onChange: (e)=>handleUsdChange(e.target.value)
-                    })
-                ]
-            }),
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-                className: (styles_module_default()).sectionEur,
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                        htmlFor: "eurInput",
-                        children: "EUR"
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("input", {
-                        type: "number",
-                        id: "eurInput",
-                        value: currency.EUR,
-                        onChange: (e)=>handleEurChange(e.target.value)
-                    })
-                ]
-            })
-        ]
+        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
+            className: (styles_module_default()).sectionSelect,
+            children: [
+                /*#__PURE__*/ jsx_runtime_.jsx("h3", {
+                    children: "Выберите валюту"
+                }),
+                /*#__PURE__*/ jsx_runtime_.jsx("select", {
+                    // className={`formControl ${answer ? "formError" : ""}`}
+                    onChange: handleAnswerChange,
+                    value: answer,
+                    id: "contactAnswer",
+                    name: "answer",
+                    placeholder: answer === "" ? "выберите валюту" : "",
+                    children: RIGHT_ANSWER.map((option)=>/*#__PURE__*/ jsx_runtime_.jsx("option", {
+                            value: option.value,
+                            children: option.label
+                        }, option.value))
+                }),
+                answer && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h2", {
+                    children: [
+                        "1 ",
+                        namePurchasePrice1,
+                        " = ",
+                        purchasePrice1,
+                        " ",
+                        answer,
+                        "."
+                    ]
+                }),
+                answer && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h2", {
+                    children: [
+                        "1 ",
+                        namePurchasePrice2,
+                        " = ",
+                        purchasePrice2,
+                        " ",
+                        answer,
+                        "."
+                    ]
+                })
+            ]
+        })
     });
 }
 
-;// CONCATENATED MODULE: ./src/redux/store.ts
-
-
-const store = (0,redux_toolkit_modern/* configureStore */.xC)({
-    reducer: {
-        currencys: redux_currencySlice
-    }
-});
-
+// EXTERNAL MODULE: ./src/components/CurrencyPrice/currencyPrice.tsx
+var currencyPrice = __webpack_require__(6861);
 ;// CONCATENATED MODULE: ./src/app/page.tsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
 
 
 
-
+// import { Provider } from "react-redux";
+// import { store } from "@/redux/store";
 function Home() {
-    return /*#__PURE__*/ jsx_runtime_.jsx(react_redux/* Provider */.zt, {
-        store: store,
-        children: /*#__PURE__*/ jsx_runtime_.jsx(Converter, {})
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx(Converter, {}),
+            /*#__PURE__*/ jsx_runtime_.jsx(currencyPrice/* default */.Z, {})
+        ]
     });
 }
 
@@ -425,7 +442,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,951,195,949], () => (__webpack_exec__(9712)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,277,523], () => (__webpack_exec__(9712)));
 module.exports = __webpack_exports__;
 
 })();

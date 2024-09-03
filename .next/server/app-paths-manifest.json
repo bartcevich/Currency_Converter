@@ -1,7 +1,5 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
-  "/kids/page": "app/kids/page.js",
-  "/programs/page": "app/programs/page.js",
-  "/teenagers/page": "app/teenagers/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/convert/page": "app/convert/page.js"
 }

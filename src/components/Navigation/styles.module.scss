@@ -18,10 +18,12 @@
 }
 .navbar{
   z-index: 1;
+  height: 100%;
 }
 .menu_nav0{
   a{
       color: #fff;
+      padding: 0;
   }
 }
 .menu_nav1{
@@ -50,8 +52,8 @@
 }
 }
 .logo {
-    width: 146px;
-    height: 93px;
+    width: 102px;
+    height: 65px;
     display: flex;
     justify-content: center;
     align-items: center;
