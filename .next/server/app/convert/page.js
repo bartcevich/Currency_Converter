@@ -396,7 +396,7 @@ function Converter() {
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                         type: "number",
                         id: "usdInput",
-                        value: currency.USD,
+                        value: currency.USD === 0 ? "" : currency.USD,
                         onChange: (e)=>handleUsdChange(e.target.value)
                     }),
                     !!notValidValue && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
@@ -421,7 +421,7 @@ function Converter() {
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                         type: "number",
                         id: "eurInput",
-                        value: currency.EUR,
+                        value: currency.EUR === 0 ? "" : currency.EUR,
                         onChange: (e)=>handleEurChange(e.target.value)
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
